@@ -8,16 +8,15 @@ app.listen(port, () => {
 })
 
 app.get("/", (req, res, next) => {
-    let toBeZalgoed = req.query.string
-    res.json(zalgo(toBeZalgoed || ""))
+    let result = zalgo(req.query.string || "")
+    res.json(result)
 })
 
-
-function rand(min, max) {
-    return Math.floor(Math.random() * (max-min + 1) + min);
+function rand (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function zalgo(text) {
+function zalgo (text) {
 
     var zalgo_up = [
         '\u030d', '\u030e', '\u0304', '\u0305',
@@ -33,7 +32,7 @@ function zalgo(text) {
         '\u036a', '\u036b', '\u036c', '\u036d',
         '\u036e', '\u036f', '\u033e', '\u035b',
         '\u0346', '\u031a'
-    ];
+    ]
 
     var zalgo_mid = [
         '\u0315', '\u031b', '\u0340', '\u0341',
@@ -42,7 +41,7 @@ function zalgo(text) {
         '\u034f', '\u035c', '\u035d', '\u035e',
         '\u035f', '\u0360', '\u0362', '\u0338',
         '\u0337', '\u0361', '\u0489'
-    ];
+    ]
 
     var zalgo_down = [
         '\u0316', '\u0317', '\u0318', '\u0319',
@@ -55,28 +54,28 @@ function zalgo(text) {
         '\u0347', '\u0348', '\u0349', '\u034d',
         '\u034e', '\u0353', '\u0354', '\u0355',
         '\u0356', '\u0359', '\u035a', '\u0323'
-    ];
+    ]
 
     // create array, loop through and add zalgo
-    var textinArray = text.trim().split('');
-    var smax = 15;
-    var mmax = 3;
+    var textinArray = text.trim().split('')
+    var smax = 15
+    var mmax = 3
+    var tmp = []
 
-    var tmp = [];
     for (var i in textinArray) {
 
-        var char = textinArray[i];
+        var char = textinArray[i]
 
         if (char != "\n") {
 
-            loop = rand(0,smax);
-            midloop = rand(0,mmax);
+            loop = rand(0, smax)
+            midloop = rand(0, mmax)
 
             // add upward zalgo
             if (rand(0,10) > 2) {
 
                 for (let i = 1; i <= loop; i++) {
-                    char = char + zalgo_up[rand(0, zalgo_up.length - 1)];
+                    char = char + zalgo_up[rand(0, zalgo_up.length - 1)]
                 }
 
             }
@@ -85,7 +84,7 @@ function zalgo(text) {
             if (rand(0,10) > 2) {
 
                 for(let i = 1; i <= midloop; i++) {
-                    char = char + zalgo_mid[rand(0, zalgo_mid.length - 1)];
+                    char = char + zalgo_mid[rand(0, zalgo_mid.length - 1)]
                 }
 
             }
@@ -94,18 +93,18 @@ function zalgo(text) {
             if (rand(0,10) > 2) {
 
                 for (let i = 1; i <= loop; i++) {
-                    char = char + zalgo_down[rand(0, zalgo_down.length - 1)];
+                    char = char + zalgo_down[rand(0, zalgo_down.length - 1)]
                 }
 
             }
 
         }
 
-        tmp.push(char);
+        tmp.push(char)
 
     }
 
-    return tmp.join("");
+    return tmp.join("")
 
 }
 
