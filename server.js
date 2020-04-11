@@ -1,6 +1,17 @@
 
 var express = require("express")
 var app = express()
+var port = process.env.PORT || 6969
+
+app.listen(port, () => {
+    console.log("Server running on " + port)
+})
+
+app.get("/", (req, res, next) => {
+    let toBeZalgoed = req.query.string
+    res.json(zalgo(toBeZalgoed ? toBeZalgoed : ""))
+})
+
 
 function rand(min, max) {
     return Math.floor(Math.random() * (max-min + 1) + min);
@@ -97,13 +108,4 @@ function zalgo(text) {
     return tmp.join("").replace(/(?:\r\n|\r|\n)/g, '<br />').trim();
 
 }
-
-app.listen(5000, () => {
-    console.log("Server running on port 5000")
-})
-
-app.get("/", (req, res, next) => {
-    let toBeZalgoed = req.query.string
-    res.json(zalgo(toBeZalgoed ? toBeZalgoed : ""))
-})
 
