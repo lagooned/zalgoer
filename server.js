@@ -9,7 +9,7 @@ app.listen(port, () => {
 
 app.get("/", (req, res, next) => {
     let toBeZalgoed = req.query.string
-    res.json(zalgo(toBeZalgoed ? toBeZalgoed : ""))
+    res.json(zalgo(toBeZalgoed || ""))
 })
 
 
