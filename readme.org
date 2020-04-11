@@ -1,0 +1,6 @@
+
+#+title: zalgoer
+#+author: jared engler
+
+* what it do
+- it converts query param "string" to zalgo
