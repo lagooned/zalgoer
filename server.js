@@ -102,7 +102,7 @@ app.listen(3000, () => {
     console.log("Server running on port 3000")
 })
 
-app.get("/zalgo", (req, res, next) => {
+app.get("/", (req, res, next) => {
     let toBeZalgoed = req.query.string
     res.json(zalgo(toBeZalgoed ? toBeZalgoed : ""))
 })
