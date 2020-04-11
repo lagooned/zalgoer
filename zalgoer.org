@@ -1,0 +1,7 @@
+
+#+title: zalgoer
+#+author: jared engler
+
+* what it do
+- it converts text to zalgo text with three different levels
+  - up, middle, down, with a max value
